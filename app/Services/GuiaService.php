@@ -21,14 +21,24 @@ class GuiaService
             $rawToken = bin2hex(random_bytes(16)) . '-' . time();
             $qrHash = urlencode(base64_encode($rawToken));
 
+            $fechaEmision = ! empty($data['fecha_emision'])
+                ? Carbon::parse($data['fecha_emision'])
+                : Carbon::now();
+
+            $fechaVencimiento = ! empty($data['fecha_vencimiento'])
+                ? Carbon::parse($data['fecha_vencimiento'])
+                : $fechaEmision->copy()->addDays(4);
+
             $guia = GuiaMovilizacion::create([
                 'nro_guia' => $nroGuia,
-                'fecha_emision' => Carbon::now(),
-                'fecha_vencimiento' => Carbon::now()->addHours(48), // Por defecto 48 horas
+                'fecha_emision' => $fechaEmision,
+                'fecha_vencimiento' => $fechaVencimiento,
                 'empresa_origen_id' => $data['empresa_origen_id'],
                 'empresa_destino_id' => $data['empresa_destino_id'],
                 'conductor_id' => $data['conductor_id'],
                 'vehiculo_id' => $data['vehiculo_id'],
+                'documentos_soporte' => $data['documentos_soporte'] ?? 'NE 1172 FACT. N 2683 PRECINTO 38468059/1804022',
+                'observacion' => $data['observacion'] ?? 'SACOS 25KG',
                 'estado' => 'Emitida',
                 'trazabilidad' => [],
                 'qr_hash' => $qrHash,

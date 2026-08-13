@@ -14,7 +14,7 @@ Route::get('/guias/v/{hash}', [GuiaController::class, 'verificarPublico'])->wher
 Route::get('/verificar/{hash}', [GuiaController::class, 'verificarPublico'])->where('hash', '.*');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::inertia('dashboard', 'Dashboard')->name('dashboard');
+    Route::get('/dashboard', [GuiaController::class, 'index'])->name('dashboard');
 
     // Guías SICA / SUNAGRO
     Route::get('/guias', [GuiaController::class, 'index'])->name('guias.index');

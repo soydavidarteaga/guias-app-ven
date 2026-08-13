@@ -15,7 +15,7 @@ import {
     DialogHeader,
     DialogTitle,
 } from '@/components/ui/dialog';
-import { ArrowLeft, Plus, Trash2, Save, Building2, Truck, Package, UserCheck } from '@lucide/vue';
+import { ArrowLeft, Plus, Trash2, Save, Building2, Truck, Package, Calendar, FileText } from '@lucide/vue';
 
 defineOptions({
     layout: AppLayout,
@@ -60,11 +60,25 @@ const localConductores = ref<Conductor[]>([...props.conductores]);
 const localVehiculos = ref<Vehiculo[]>([...props.vehiculos]);
 const localRubros = ref<Rubro[]>([...props.rubros]);
 
+const formatDateForInput = (d: Date) => {
+    const pad = (n: number) => n.toString().padStart(2, '0');
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+};
+
+const now = new Date();
+const initialEmision = formatDateForInput(now);
+const initialVencimientoDate = new Date(now.getTime() + 4 * 24 * 60 * 60 * 1000);
+const initialVencimiento = formatDateForInput(initialVencimientoDate);
+
 const form = useForm({
     empresa_origen_id: localEmpresas.value[0]?.id || '',
     empresa_destino_id: localEmpresas.value[1]?.id || localEmpresas.value[0]?.id || '',
     conductor_id: localConductores.value[0]?.id || '',
     vehiculo_id: localVehiculos.value[0]?.id || '',
+    fecha_emision: initialEmision,
+    fecha_vencimiento: initialVencimiento,
+    documentos_soporte: 'NE 1172 FACT. N 2683 PRECINTO 38468059/1804022',
+    observacion: 'SACOS 25KG',
     items: [
         {
             rubro_id: localRubros.value[0]?.id || '',
@@ -74,6 +88,16 @@ const form = useForm({
         },
     ],
 });
+
+const onFechaEmisionChange = () => {
+    if (form.fecha_emision) {
+        const emisionDate = new Date(form.fecha_emision);
+        if (!isNaN(emisionDate.getTime())) {
+            const vencDate = new Date(emisionDate.getTime() + 4 * 24 * 60 * 60 * 1000);
+            form.fecha_vencimiento = formatDateForInput(vencDate);
+        }
+    }
+};
 
 const addItem = () => {
     form.items.push({
@@ -303,12 +327,76 @@ const submitQuickRubro = async () => {
         </div>
 
         <form @submit.prevent="submit" class="space-y-6">
-            <!-- 1. Datos de Origen y Destino -->
+
+            <!-- Fechas y Documentos de Soporte -->
+            <Card class="border-sidebar-border/70">
+                <CardHeader>
+                    <CardTitle class="text-lg flex items-center gap-2">
+                        <Calendar class="h-5 w-5 text-primary" />
+                        1. Fechas y Documentación del Despacho
+                    </CardTitle>
+                    <CardDescription>Establezca las fechas de vigencia y soporte legal del traslado.</CardDescription>
+                </CardHeader>
+                <CardContent class="grid md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <Label for="fecha_emision">Fecha de Aprobación / Emisión</Label>
+                        <Input
+                            id="fecha_emision"
+                            type="datetime-local"
+                            v-model="form.fecha_emision"
+                            @change="onFechaEmisionChange"
+                            required
+                        />
+                        <p class="text-xs text-muted-foreground">Al cambiar la fecha de aprobación, la fecha de vencimiento se calcula a +4 días automáticamente.</p>
+                    </div>
+
+                    <div class="space-y-2">
+                        <Label for="fecha_vencimiento">Fecha de Vencimiento (+4 días)</Label>
+                        <Input
+                            id="fecha_vencimiento"
+                            type="datetime-local"
+                            v-model="form.fecha_vencimiento"
+                            required
+                        />
+                        <p class="text-xs text-muted-foreground">Fecha límite de vigencia de la guía (modificable libremente).</p>
+                    </div>
+
+                    <div class="md:col-span-2 space-y-2">
+                        <Label for="documentos_soporte" class="flex items-center gap-2">
+                            <FileText class="h-4 w-4 text-primary" />
+                            Facturas u Órdenes que Soportan el Despacho
+                        </Label>
+                        <Input
+                            id="documentos_soporte"
+                            type="text"
+                            v-model="form.documentos_soporte"
+                            placeholder="Ej. NE 1172 FACT. N 2683 PRECINTO 38468059/1804022"
+                        />
+                        <p class="text-xs text-muted-foreground">Indique los números de factura, notas de entrega, órdenes o precintos asociados.</p>
+                    </div>
+
+                    <div class="md:col-span-2 space-y-2">
+                        <Label for="observacion" class="flex items-center gap-2">
+                            <FileText class="h-4 w-4 text-primary" />
+                            Observación de los Rubros (PDF)
+                        </Label>
+                        <Input
+                            id="observacion"
+                            type="text"
+                            v-model="form.observacion"
+                            placeholder="Ej. SACOS 25KG"
+                        />
+                        <p class="text-xs text-muted-foreground">Observación impresa en la tabla de rubros del PDF de la guía.</p>
+                    </div>
+                </CardContent>
+            </Card>
+
+            <!-- 2. Datos de Origen y Destino -->
             <Card class="border-sidebar-border/70">
                 <CardHeader>
                     <CardTitle class="text-lg flex items-center gap-2">
                         <Building2 class="h-5 w-5 text-primary" />
-                        1. Origen y Destino del Despacho
+                        2. Origen y Destino del Despacho
                     </CardTitle>
                     <CardDescription>Seleccione las empresas participantes registradas en el sistema SICA.</CardDescription>
                 </CardHeader>
@@ -365,12 +453,12 @@ const submitQuickRubro = async () => {
                 </CardContent>
             </Card>
 
-            <!-- 2. Datos de Transporte -->
+            <!-- 3. Datos de Transporte -->
             <Card class="border-sidebar-border/70">
                 <CardHeader>
                     <CardTitle class="text-lg flex items-center gap-2">
                         <Truck class="h-5 w-5 text-primary" />
-                        2. Flota y Conductor Autorizado
+                        3. Flota y Conductor Autorizado
                     </CardTitle>
                     <CardDescription>Asigne el vehículo de transporte y el conductor responsable.</CardDescription>
                 </CardHeader>
@@ -427,13 +515,13 @@ const submitQuickRubro = async () => {
                 </CardContent>
             </Card>
 
-            <!-- 3. Detalle de Rubros -->
+            <!-- 4. Detalle de Rubros -->
             <Card class="border-sidebar-border/70">
                 <CardHeader class="flex flex-row items-center justify-between">
                     <div>
                         <CardTitle class="text-lg flex items-center gap-2">
                             <Package class="h-5 w-5 text-primary" />
-                            3. Rubros y Carga Alimenticia
+                            4. Rubros y Carga Alimenticia
                         </CardTitle>
                         <CardDescription>Agregue los productos que componen la carga.</CardDescription>
                     </div>

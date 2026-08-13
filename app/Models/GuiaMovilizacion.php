@@ -22,6 +22,8 @@ class GuiaMovilizacion extends Model
         'conductor_id',
         'vehiculo_id',
         'estado',
+        'documentos_soporte',
+        'observacion',
         'trazabilidad',
         'qr_hash',
     ];

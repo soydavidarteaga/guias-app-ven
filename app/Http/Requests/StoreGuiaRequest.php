@@ -11,7 +11,7 @@ class StoreGuiaRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true; // En un escenario real, validar con Gates/Policies
+        return true;
     }
 
     /**
@@ -26,6 +26,10 @@ class StoreGuiaRequest extends FormRequest
             'empresa_destino_id' => 'required|exists:empresas,id',
             'conductor_id' => 'required|exists:conductors,id',
             'vehiculo_id' => 'required|exists:vehiculos,id',
+            'fecha_emision' => 'nullable|date',
+            'fecha_vencimiento' => 'nullable|date',
+            'documentos_soporte' => 'nullable|string|max:1000',
+            'observacion' => 'nullable|string|max:1000',
             
             'items' => 'required|array|min:1',
             'items.*.rubro_id' => 'required|exists:rubros,id',

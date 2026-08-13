@@ -68,7 +68,16 @@ class GuiaController extends Controller
         $validated = $request->validated();
 
         $guia = $this->guiaService->createGuia(
-            $request->only(['empresa_origen_id', 'empresa_destino_id', 'conductor_id', 'vehiculo_id']),
+            $request->only([
+                'empresa_origen_id',
+                'empresa_destino_id',
+                'conductor_id',
+                'vehiculo_id',
+                'fecha_emision',
+                'fecha_vencimiento',
+                'documentos_soporte',
+                'observacion',
+            ]),
             $validated['items']
         );
 

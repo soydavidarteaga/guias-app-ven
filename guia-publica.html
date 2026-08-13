@@ -3,7 +3,7 @@
 <head>
     <!-- NO JAVASCRIPT -->
     <noscript>
-        <meta http-equiv="refresh" content="0;url=/login">
+        <meta http-equiv="refresh" content="0;url=https://sica.sunagro.gob.ve/dependencias">
     </noscript>
 
     <meta charset="utf-8">
@@ -11,26 +11,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CANONICAL -->
-    <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="canonical" href="https://sica.sunagro.gob.ve/login">
 
     <!-- DESCRIPTION -->
-    <meta name="description" content="Sistema Nacional Integral Agroalimentario - Consulta de Guías de Movilización.">
+    <meta name="description"
+        content="Ejecutar las políticas públicas relacionadas con el Sistema Nacional Integral Agroalimentario (SNIA), dictadas por el Ejecutivo Nacional, con objeto de garantizar la distribución justa y equitativa en materia de producción e importación de productos agroalimentarios en coordinación con los entes u órganos competentes, así como, asegurar la disponibilidad y acceso oportuno de alimentos inocuos, de calidad y cantidad suficiente a la población y al mercado nacional, contribuyendo con la seguridad y soberanía agroalimentaria del país.">
 
     <!-- KEYWORDS -->
-    <meta name="Keywords" content="sunagro, Sistema Nacional Integral Agroalimentario">
+    <meta name="Keywords" content="sunagro, Sistema Nacional Integral Agroalimentario, ">
     <meta name="theme-color" content="#4285f4">
 
     <!-- CSRF TOKEN -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="odvcjBmmzla97O4fIAu8p7sFVwMWCRbHaEazWBHT">
 
     <title>Sunagro</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <!-- WHATSAPP -->
+    <meta property="og:image" content="https://sica.sunagro.gob.ve/img/sunagro_icon.webp">
+    <meta property="og:image:secure_url" content="https://sica.sunagro.gob.ve/img/sunagro_icon.webp">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="300">
+    <meta property="og:image:height" content="300">
 
-    <!-- LOCAL CSS ASSETS -->
-    <link href="/css/fontawesome.all.min.css" rel="stylesheet" type="text/css">
-    <link href="/css/sunagro-styles.min.css?v=1.0.4" rel="stylesheet" type="text/css">
-    <link href="/css/styles.css?v=1.0.4" rel="stylesheet" type="text/css">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://sica.sunagro.gob.ve/favicon.ico">
+
+    <link href="https://sica.sunagro.gob.ve/css/sunagro-styles.min.css?v=1.0.4" rel="stylesheet" type="text/css">
+    <link href="https://sica.sunagro.gob.ve/css/styles.css?v=1.0.4" rel="stylesheet" type="text/css">
+
 
     <style>
         [wire\:loading],
@@ -75,22 +83,23 @@
     </style>
 </head>
 
-<body data-new-gr-c-s-check-loaded="14.1320.0" data-gr-ext-installed="" style="background-color: #e8eff4;">
-    <div>
-        <div class="page-body-wrapper full-page-wrapper" style="background-color: #e8eff4;">
-            <div class="content-wrapper px-0 py-2" style="padding-top: 10px !important; padding-bottom: 20px !important; background-color: #e8eff4;">
+<body data-new-gr-c-s-check-loaded="14.1320.0" data-gr-ext-installed="">
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="content-wrapper d-flex align-items-center auth px-0">
                 <div class="row w-100 mx-0">
-                    <div wire:id="EmK7sIjrjPjHRMpjrK2b" class="col-12 col-md-11 col-lg-10 mx-auto bg-white p-0 shadow-sm"
+                    <div wire:id="EmK7sIjrjPjHRMpjrK2b" class="col-10 mx-auto bg-white"
                         wire:init="__method('cTZRVCtiWmwrSVlGMGpOa3FMZFBjQT09')">
                         <div class="row">
                             <div class="col-12">
-                                <img src="/img/header_report.gif" class="w-100" onerror="this.src='/header-report.gif'">
+                                <img src="https://sica.sunagro.gob.ve/img/header_report.gif" class="w-100">
                             </div>
                         </div>
                         <div class="faq-section mb-1" style="flex: 2;">
                             <div class="container-fluid bg-primary py-2 text-center">
                                 <h4 class="mb-0 text-white">
-                                    CONSULTA DE DATOS DEL DESPACHO #{{ $guia->nro_guia }}
+                                    CONSULTA DE DATOS DEL DESPACHO #174392139
+
                                 </h4>
                             </div>
                         </div>
@@ -104,7 +113,7 @@
                                 <tr>
                                     <td class="text-center">
                                         <small>
-                                            <strong>N GUÍA:</strong> {{ $guia->nro_guia }}
+                                            <strong>N GUÍA:</strong> 174392139
                                         </small>
                                     </td>
                                     <td class="text-center">
@@ -114,22 +123,21 @@
                                     </td>
                                     <td class="text-center">
                                         <small>
-                                            <strong>VENCE:</strong> {{ $guia->fecha_vencimiento->format('d-m-Y') }}
+                                            <strong>VENCE:</strong> 19-07-2026
                                         </small>
                                     </td>
                                     <td class="text-center">
                                         <small>
-                                            <strong>COG. SEGURIDAD:</strong>
-                                            {{ substr($guia->qr_hash ?? md5($guia->nro_guia), 0, 32) }}
+                                            <strong>COG. SEGURIDAD:</strong> 711f8d36c82a1d79bce73cb22b1fe744
                                         </small>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="faq-section" style="flex: 2;">
+                        <div class="faq-section mb-1" style="flex: 2;">
                             <div class="container-fluid bg-success py-1 text-center">
                                 <h6 class="mb-0 text-white">APROBADO POR
-                                    SISTEMA EL {{ strtoupper($guia->fecha_emision->format('d-m-Y h:i:s A')) }}
+                                    SISTEMA EL 15-07-2026 04:49:12 PM
                                 </h6>
                             </div>
                         </div>
@@ -147,7 +155,7 @@
                                                 <strong>CÓDIGO:</strong>
                                             </td>
                                             <td class="text-center text-sm p-0">
-                                                {{ $guia->empresaOrigen->codigo_sica ?? '715118' }}
+                                                715118
                                             </td>
                                         </tr>
                                         <tr>
@@ -155,7 +163,7 @@
                                                 <strong>RAZÓN:</strong>
                                             </td>
                                             <td class="text-center text-sm p-0">
-                                                {{ $guia->empresaOrigen->razon_social }}
+                                                DISTRIBUIDORA CAMBRIA C.A.
                                             </td>
                                         </tr>
                                         <tr>
@@ -163,7 +171,7 @@
                                                 <strong>RIF:</strong>
                                             </td>
                                             <td class="text-center text-sm p-0">
-                                                {{ str_replace('-', '', $guia->empresaOrigen->rif) }}
+                                                J409403033
                                             </td>
                                         </tr>
                                         <tr>
@@ -180,7 +188,8 @@
                                             </td>
                                             <td class="text-center text-sm p-0"
                                                 style="word-wrap: break-word; white-space: normal;">
-                                                {{ $guia->empresaOrigen->direccion }}
+                                                AV DOMINGO OLAVARRIA CON CALLE NORTE- SUR 1, PARCELA 3-4 LOCAL GALPON
+                                                NRO- G-08 ZONA INDUSTRIAL MUNICIPAL SUR VALENCIA CARABOBO
                                             </td>
                                         </tr>
                                         <tr>
@@ -188,7 +197,7 @@
                                                 <strong>ESTADO:</strong>
                                             </td>
                                             <td class="text-center text-sm p-0">
-                                                {{ strtoupper($guia->empresaOrigen->estado ?? 'CARABOBO') }}
+                                                CARABOBO
                                             </td>
                                         </tr>
                                         <tr>
@@ -196,7 +205,7 @@
                                                 <strong>MUNICIPIO:</strong>
                                             </td>
                                             <td class="text-center text-sm p-0">
-                                                {{ $guia->empresaOrigen->ciudad ?? 'Valencia' }}
+                                                Valencia
                                             </td>
                                         </tr>
                                         <tr>
@@ -204,7 +213,7 @@
                                                 <strong>PARROQUIA:</strong>
                                             </td>
                                             <td class="text-center text-sm p-0">
-                                                {{ $guia->empresaOrigen->parroquia ?? 'Urbana Rafael Urdaneta' }}
+                                                Urbana Rafael Urdaneta
                                             </td>
                                         </tr>
                                         <tr>
@@ -212,7 +221,7 @@
                                                 <strong>CIUDAD:</strong>
                                             </td>
                                             <td class="text-center text-sm p-0">
-                                                {{ strtoupper($guia->empresaOrigen->ciudad ?? 'VALENCIA') }}
+                                                VALENCIA
                                             </td>
                                         </tr>
                                     </tbody>
@@ -231,8 +240,8 @@
                                                 <strong>CONDUCTOR:</strong>
                                             </td>
                                             <td class="text-center text-sm p-0">
-                                                [{{ $guia->conductor->cedula }}] -
-                                                {{ $guia->conductor->nombre_completo }}
+                                                [8810704] -
+                                                LINO ALEXANDER AYBAR CIRA
                                             </td>
                                         </tr>
                                         <tr>
@@ -240,8 +249,8 @@
                                                 <strong>VEHÍCULO:</strong>
                                             </td>
                                             <td class="text-center text-sm p-0">
-                                                {{ $guia->vehiculo->tipo }} -
-                                                {{ $guia->vehiculo->placa }} -
+                                                CAMION -
+                                                90DBAN -
                                             </td>
                                         </tr>
                                     </tbody>
@@ -263,7 +272,7 @@
                                                 <strong>CÓDIGO:</strong>
                                             </td>
                                             <td class="text-center text-sm p-0">
-                                                {{ $guia->empresaDestino->codigo_sica ?? '992357' }}
+                                                992357
                                             </td>
                                         </tr>
                                         <tr>
@@ -271,7 +280,7 @@
                                                 <strong>RAZÓN:</strong>
                                             </td>
                                             <td class="text-center text-sm p-0">
-                                                {{ $guia->empresaDestino->razon_social }}
+                                                PLANTA ABA VALENCIA - PROAGRO DEL CENTRO, C.A.
                                             </td>
                                         </tr>
                                         <tr>
@@ -279,7 +288,7 @@
                                                 <strong>RIF:</strong>
                                             </td>
                                             <td class="text-center text-sm p-0">
-                                                {{ str_replace('-', '', $guia->empresaDestino->rif) }}
+                                                J505150863
                                             </td>
                                         </tr>
                                         <tr>
@@ -296,7 +305,8 @@
                                             </td>
                                             <td class="text-center text-sm p-0"
                                                 style="word-wrap: break-word; white-space: normal;">
-                                                {{ $guia->empresaDestino->direccion }}
+                                                AVENIDA EUGENIO MENDOZA, FRENTE AL ESTADIO JOSE BERNARDO PEREZ, ZONA
+                                                INDUSTRIAL VALENCIA DEL ESTADO CARABOBO
                                             </td>
                                         </tr>
                                         <tr>
@@ -304,7 +314,7 @@
                                                 <strong>ESTADO:</strong>
                                             </td>
                                             <td class="text-center text-sm p-0">
-                                                {{ strtoupper($guia->empresaDestino->estado ?? 'CARABOBO') }}
+                                                CARABOBO
                                             </td>
                                         </tr>
                                         <tr>
@@ -312,7 +322,7 @@
                                                 <strong>MUNICIPIO:</strong>
                                             </td>
                                             <td class="text-center text-sm p-0">
-                                                {{ $guia->empresaDestino->ciudad ?? 'Valencia' }}
+                                                Valencia
                                             </td>
                                         </tr>
                                         <tr>
@@ -320,7 +330,7 @@
                                                 <strong>PARROQUIA:</strong>
                                             </td>
                                             <td class="text-center text-sm p-0">
-                                                {{ $guia->empresaDestino->parroquia ?? 'Urbana Rafael Urdaneta' }}
+                                                Urbana Rafael Urdaneta
                                             </td>
                                         </tr>
                                         <tr>
@@ -328,7 +338,7 @@
                                                 <strong>CIUDAD:</strong>
                                             </td>
                                             <td class="text-center text-sm p-0">
-                                                {{ strtoupper($guia->empresaDestino->ciudad ?? 'VALENCIA') }}
+                                                VALENCIA
                                             </td>
                                         </tr>
                                     </tbody>
@@ -356,6 +366,7 @@
                             <div class="container-fluid bg-primary py-2 text-center">
                                 <h4 class="mb-0 text-white">
                                     RUBROS
+
                                 </h4>
                             </div>
                         </div>
@@ -370,26 +381,23 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($guia->items as $item)
-                                    <tr>
-                                        <td class="text-center">
-                                            {{ strtoupper($item->rubro->nombre) }}
-                                        </td>
-                                        <td class="text-center">
-                                            {{ number_format($item->cantidad, 3) }}
-                                            {{ $item->rubro->unidad_medida ?? 'TM' }}
-                                        </td>
-                                        <td class="text-center">
-                                            {{ number_format($item->precio_unitario, 2) }} BS
-                                        </td>
-                                        <td class="text-center">
-                                            {{ strtoupper($item->rubro->presentacion ?? 'OTROS') }}
-                                        </td>
-                                        <td class="text-center">
-                                            OTROS
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                <tr>
+                                    <td class="text-center">
+                                        AMINOÁCIDOS
+                                    </td>
+                                    <td class="text-center">
+                                        1,500 TM
+                                    </td>
+                                    <td class="text-center">
+                                        1,00 BS
+                                    </td>
+                                    <td class="text-center">
+                                        OTROS
+                                    </td>
+                                    <td class="text-center">
+                                        OTROS
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <div class="w-100 mt-4">
@@ -411,35 +419,74 @@
                         </div>
                     </div>
 
+                    <!-- Livewire Component wire-end:EmK7sIjrjPjHRMpjrK2b -->
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- LOADER LOCAL FULLSCREEN OVERLAY -->
-    <div class="loading-top" id="sunagro-loader" style="display: flex !important; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 999999; background: #ffffff; align-items: center; justify-content: center;">
-        <div class="d-flex align-items-center justify-content-center" style="width: 90px; height: 90px; position: relative;">
-            <img class="log rotate-1-cw" src="/img/sunagro_icon_1.png" alt="Sunagro Logo" style="width: 90px; height: 90px; position: absolute;">
-            <img class="log rotate-2-cw" src="/img/sunagro_icon_2.png" alt="Sunagro Logo" style="width: 90px; height: 90px; position: absolute;">
+    <div class="loading-top" style="display: none;">
+        <div class="d-lg-flex align-items-center justify-content-center" style="width: 50px;">
+            <img class="log rotate-1-cw" src="https://sica.sunagro.gob.ve/img/sunagro_icon_1.png" alt="Sunagro Logo">
+            <img class="log rotate-2-cw" src="https://sica.sunagro.gob.ve/img/sunagro_icon_2.png" alt="Sunagro Logo">
         </div>
     </div>
 
-    <!-- LOCAL JS ASSETS -->
-    <script src="/js/vendor.bundle.base.js?v=1.0.4" type="text/javascript"></script>
-    <script src="/js/sunagro-js.min.js?v=1.0.4" type="text/javascript"></script>
+
+    <script src="/vendor/livewire/livewire.js?id=90730a3b0e7144480175" data-turbo-eval="false"
+        data-turbolinks-eval="false"></script>
+    <script data-turbo-eval="false"
+        data-turbolinks-eval="false">window.livewire = new Livewire(); window.Livewire = window.livewire; window.livewire_app_url = ''; window.livewire_token = 'odvcjBmmzla97O4fIAu8p7sFVwMWCRbHaEazWBHT'; window.deferLoadingAlpine = function (callback) { window.addEventListener('livewire:load', function () { callback(); }); }; let started = false; window.addEventListener('alpine:initializing', function () { if (!started) { window.livewire.start(); started = true; } }); document.addEventListener("DOMContentLoaded", function () { if (!started) { window.livewire.start(); started = true; } });</script>
+
+    <script src="https://sica.sunagro.gob.ve/js/vendor.bundle.base.js?v=1.0.4" type="text/javascript"></script>
+    <script src="https://sica.sunagro.gob.ve/js/sunagro-js.min.js?v=1.0.4" type="text/javascript"></script>
     <script type="text/javascript">
-        window.addEventListener('DOMContentLoaded', function () {
-            const loader = document.getElementById('sunagro-loader');
-            if (loader) {
-                setTimeout(function () {
-                    loader.style.transition = 'opacity 0.5s ease';
-                    loader.style.opacity = '0';
-                    setTimeout(function() { loader.style.display = 'none'; }, 500);
-                }, 1500);
+        $(document).ready(function ($) {
+
+
+
+
+        });
+    </script>
+    <script type="module">
+        import { global } from "/js/sunagro-modules-js.js?v=1.0.4"
+        global.showContent();
+        global.events();
+    </script>
+
+
+    <script>
+        document.addEventListener('livewire:load', function () {
+            let counter_ = 0;
+
+            const loadingTop = () => {
+                if (counter_ < 1) {
+                    $('.loading-top').fadeOut();
+                    $('.buttons-events').removeAttr('disabled');
+                } else {
+                    $('.loading-top').fadeIn();
+                    $('.buttons-events').attr('disabled', true);
+                }
             }
+
+            $(document).ready(function () {
+                loadingTop();
+
+                Livewire.hook('message.sent', (message, component) => {
+                    counter_++;
+                    loadingTop();
+                })
+                Livewire.hook('message.processed', (message, component) => {
+                    counter_--;
+                    loadingTop();
+                })
+            });
         });
     </script>
 
-</body>
+
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"
+    style="visibility: visible !important;"></grammarly-desktop-integration>
 
 </html>

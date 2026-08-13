@@ -21,6 +21,8 @@ return new class extends Migration
             $table->foreignId('conductor_id')->constrained('conductors')->restrictOnDelete();
             $table->foreignId('vehiculo_id')->constrained('vehiculos')->restrictOnDelete();
             $table->string('estado')->default('Borrador'); // Borrador, Emitida, En Tránsito, Anulada, Completada
+            $table->text('documentos_soporte')->nullable(); // Facturas u Órdenes que soportan el despacho
+            $table->text('observacion')->nullable(); // Observación de los rubros
             $table->json('trazabilidad')->nullable(); // Guardar sellos/firmas/alcabalas
             $table->string('qr_hash')->nullable()->unique();
             $table->timestamps();
