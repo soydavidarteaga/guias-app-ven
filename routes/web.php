@@ -7,7 +7,9 @@ use App\Http\Controllers\RubroController;
 use App\Http\Controllers\VehiculoController;
 use Illuminate\Support\Facades\Route;
 
-Route::inertia('/', 'Welcome')->name('home');
+Route::get('/', function () {
+    return auth()->check() ? redirect()->route('dashboard') : redirect()->route('login');
+})->name('home');
 
 // Rutas Públicas de Verificación de Guía por Código QR / Hash
 Route::get('/guias/v/{hash}', [GuiaController::class, 'verificarPublico'])->where('hash', '.*')->name('guias.verificar');
@@ -18,6 +20,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Guías SICA / SUNAGRO
     Route::get('/guias', [GuiaController::class, 'index'])->name('guias.index');
+    Route::get('/guias/exportar-todas-zip', [GuiaController::class, 'exportAllZip'])->name('guias.exportAllZip');
     Route::get('/guias/crear', [GuiaController::class, 'create'])->name('guias.create');
     Route::post('/guias', [GuiaController::class, 'store'])->name('guias.store');
     Route::get('/guias/{guia}', [GuiaController::class, 'show'])->name('guias.show')->where('guia', '^[0-9]{1,6}$');

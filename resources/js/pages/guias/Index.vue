@@ -75,12 +75,20 @@ const getBadgeVariant = (status: string) => {
                     Gestión, emisión y control de guías de despacho de productos alimenticios.
                 </p>
             </div>
-            <Button as-child class="gap-2">
-                <Link href="/guias/crear">
-                    <Plus class="h-4 w-4" />
-                    Emitir Nueva Guía
-                </Link>
-            </Button>
+            <div class="flex items-center gap-2">
+                <Button as-child variant="outline" class="gap-2 border-amber-500/50 text-amber-600 hover:bg-amber-500/10 hover:text-amber-700">
+                    <a href="/guias/exportar-todas-zip">
+                        <FileText class="h-4 w-4" />
+                        Descargar Todas (ZIP)
+                    </a>
+                </Button>
+                <Button as-child class="gap-2">
+                    <Link href="/guias/crear">
+                        <Plus class="h-4 w-4" />
+                        Emitir Nueva Guía
+                    </Link>
+                </Button>
+            </div>
         </div>
 
         <!-- Metric Cards -->
@@ -213,6 +221,16 @@ const getBadgeVariant = (status: string) => {
                             </tr>
                         </tbody>
                     </table>
+                </div>
+
+                <!-- Pagination -->
+                <div v-if="guias.links.length > 3" class="mt-4 flex flex-wrap justify-center gap-1">
+                    <template v-for="(link, i) in guias.links" :key="i">
+                        <div v-if="link.url === null" class="mr-1 mb-1 px-4 py-2 text-sm text-muted-foreground border rounded" v-html="link.label"></div>
+                        <Link v-else :href="link.url" class="mr-1 mb-1 px-4 py-2 text-sm border rounded hover:bg-muted" :class="{ 'bg-primary text-primary-foreground hover:bg-primary': link.active }">
+                            <span v-html="link.label"></span>
+                        </Link>
+                    </template>
                 </div>
             </CardContent>
         </Card>

@@ -82,5 +82,12 @@ class DatabaseSeeder extends Seeder
             'placa' => 'A12B34C',
             'estatus' => 'Operativo',
         ]);
+    
+
+
+        $this->call([
+            MacanaoMatoGrosoSeeder::class,
+            GuiasSicaMatogrosoSeeder::class,
+        ]);
     }
 }

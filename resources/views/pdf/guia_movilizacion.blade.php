@@ -117,7 +117,7 @@
                     <img src="{{ $headerBase64 }}" style="width: 100%; height: auto; display: block;" />
                 @endif
             </td>
-            <td style="width: 15%; text-align: right; vertical-align: middle; padding: 0;" class="border-0">
+            <td style="width: 15%; text-align: right; vertical-align: middle; padding: 5px;" class="border-0">
                 @if($qrBase64)
                     <img src="{{ $qrBase64 }}" style="width: 120px; height: 120px; display: block; margin-left: auto;" />
                 @else
@@ -133,8 +133,8 @@
             <td style="text-align: left; font-weight: bold; font-size: 8.5px; padding: 0; text-transform: none;" class="border-0">
                 {{ $copia['tipo'] }}
             </td>
-            <td style="text-align: right; font-family: monospace; font-size: 7.5px; font-weight: bold; padding: 0;" class="border-0">
-                {{ substr($guia->qr_hash, 0, 25) }}
+            <td style="text-align: right; font-size: 6.5px; font-family: Arial, Helvetica, sans-serif; font-weight: bold; padding: 0px; text-transform: none;" class="border-0">
+                {{ substr($guia->qr_hash, 0, 30) }}
             </td>
         </tr>
     </table>

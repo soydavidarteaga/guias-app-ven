@@ -142,4 +142,29 @@ class GuiaController extends Controller
 
         return $pdf->stream('guia_sica_' . $guia->nro_guia . '.pdf', ['Attachment' => false]);
     }
+
+    public function exportAllZip()
+    {
+        set_time_limit(300); // 5 minutes for bulk PDF generation
+        $guias = GuiaMovilizacion::with(['items.rubro', 'empresaOrigen', 'empresaDestino', 'conductor', 'vehiculo'])->latest()->get();
+
+        $zipFile = storage_path('app/temp_guias_' . time() . '.zip');
+        $zip = new \ZipArchive();
+
+        if ($zip->open($zipFile, \ZipArchive::CREATE | \ZipArchive::OVERWRITE) === true) {
+            foreach ($guias as $guia) {
+                $pesoTotal = $this->guiaService->calcularPesoTotal($guia);
+                $pdf = Pdf::loadView('pdf.guia_movilizacion', compact('guia', 'pesoTotal'));
+                $pdf->setOption('isRemoteEnabled', true);
+                $pdf->setOption('isHtml5ParserEnabled', true);
+
+                $pdfContent = $pdf->output();
+                $filename = 'guia_sica_' . $guia->nro_guia . '.pdf';
+                $zip->addFromString($filename, $pdfContent);
+            }
+            $zip->close();
+        }
+
+        return response()->download($zipFile)->deleteFileAfterSend(true);
+    }
 }
