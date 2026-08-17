@@ -99,7 +99,7 @@ const getBadgeVariant = (status: string) => {
                 </Button>
 
                 <Button as-child class="gap-2">
-                    <a :href="`/guias/${guia.id}/pdf`" target="_blank">
+                    <a :href="`/guias/${guia.nro_guia}/pdf`" target="_blank">
                         <Download class="h-4 w-4" />
                         Descargar PDF
                     </a>

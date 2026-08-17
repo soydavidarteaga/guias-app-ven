@@ -163,7 +163,7 @@
     <!-- SECCIÓN 2: (4) DATOS DE LA EMPRESA QUE DESPACHA -->
     <table>
         <tr class="bg-header without-border">
-            <td colspan="3" style="width: 75%;">(4) DATOS DE LA EMPRESA QUE DESPACHA ({{ $guia->empresaOrigen->codigo_sica ?? '715118' }})</td>
+            <td colspan="3" style="width: 75%;">(4) DATOS DE LA EMPRESA QUE DESPACHA ({{ $guia->empresaOrigen->codigo_sica ?? '-' }})</td>
             <td class="bg-sub-header" colspan="3" style="width: 25%;">(2) FECHA DE EMISIÓN</td>
         </tr>
         <tr class="bg-sub-header" style="font-size: 7.5px;">
@@ -177,7 +177,7 @@
         <tr class="text-center">
             <td class="text-left">{{ $guia->empresaOrigen->razon_social }}</td>
             <td class="text-left">{{ $guia->empresaOrigen->rif }}</td>
-            <td class="text-left">{{ $guia->empresaOrigen->persona_autorizada ?? 'ANTONIO GRATEROL' }}</td>
+            <td class="text-left">{{ $guia->empresaOrigen->persona_autorizada ?? '-' }}</td>
             <td>{{ $guia->fecha_emision->format('d') }}</td>
             <td>{{ $guia->fecha_emision->format('m') }}</td>
             <td>{{ $guia->fecha_emision->format('Y') }}</td>
@@ -189,9 +189,9 @@
             <td colspan="3" style="background: #fff; font-weight: normal;">{{ $guia->fecha_emision->format('h:i:s A') }}</td>
         </tr>
         <tr class="text-center">
-            <td class="text-left">{{ $guia->empresaOrigen->estado ?? 'CARABOBO' }}</td>
-            <td class="text-left">{{ $guia->empresaOrigen->ciudad ?? 'VALENCIA' }}</td>
-            <td class="text-left">{{ $guia->empresaOrigen->parroquia ?? 'URBANA RAFAEL URDANETA' }}</td>
+            <td class="text-left">{{ $guia->empresaOrigen->estado ?? '-' }}</td>
+            <td class="text-left">{{ $guia->empresaOrigen->ciudad ?? '-' }}</td>
+            <td class="text-left">{{ $guia->empresaOrigen->parroquia ?? '-' }}</td>
             <td colspan="3" class="bg-sub-header" style="font-size: 7.5px;">(3) FECHA DE VENCIMIENTO</td>
         </tr>
         <tr class="bg-sub-header" style="font-size: 7.5px;">
@@ -201,7 +201,7 @@
             <td>AÑO</td>
         </tr>
         <tr class="text-center">
-            <td colspan="3">{{ $guia->empresaOrigen->telefonos ?? '0424-2610767 0424-2610767' }}</td>
+            <td colspan="3">{{ $guia->empresaOrigen->telefonos ?? '-' }}</td>
             <td>{{ $guia->fecha_vencimiento->format('d') }}</td>
             <td>{{ $guia->fecha_vencimiento->format('m') }}</td>
             <td>{{ $guia->fecha_vencimiento->format('Y') }}</td>
@@ -227,16 +227,16 @@
         <tr class="text-center">
             <td class="text-left">{{ $item->rubro->nombre }}</td>
             <td class="text-right">{{ number_format($item->cantidad, 3) }}</td>
-            <td>{{ $item->rubro->codigo_arancelario ?? '00000000' }}</td>
+            <td>{{ $item->rubro->codigo_arancelario ?? '-' }}</td>
             <td class="text-right">{{ number_format($item->precio_unitario, 2) }}</td>
-            <td class="text-left">{{ $item->rubro->presentacion ?? 'OTROS' }}</td>
+            <td class="text-left">{{ $item->rubro->presentacion ?? '-' }}</td>
         </tr>
         @endforeach
         <tr class="bg-sub-header" style="font-size: 7.5px;">
             <td colspan="5">OBSERVACIÓN</td>
         </tr>
         <tr>
-            <td colspan="5" class="text-left" style="font-size: 7.5px;">{{ $guia->observacion ?? 'SACOS 25KG' }}</td>
+            <td colspan="5" class="text-left" style="font-size: 7.5px;">{{ $guia->observacion ?? '-' }}</td>
         </tr>
     </table>
 
@@ -256,20 +256,20 @@
         <tr class="text-center">
             <td class="text-left">{{ $guia->conductor->nombre_completo }} - {{ $guia->conductor->cedula }}</td>
             <td class="text-left">{{ $guia->vehiculo->tipo }} - {{ $guia->vehiculo->placa }} -</td>
-            <td class="text-left">{{ $guia->vehiculo->estatus ?? 'OPERATIVO' }}</td>
+            <td class="text-left">{{ $guia->vehiculo->estatus ?? '-' }}</td>
         </tr>
         <tr class="bg-sub-header" style="font-size: 7.5px;">
             <td colspan="3">FACTURAS U ORDENES QUE SOPORTAN EL DESPACHO</td>
         </tr>
         <tr>
-            <td colspan="3" class="text-left" style="font-size: 7.5px;">{{ $guia->documentos_soporte ?? 'NE 1172 FACT. N 2683 PRECINTO 38468059/1804022' }}</td>
+            <td colspan="3" class="text-left" style="font-size: 7.5px;">{{ $guia->documentos_soporte ?? '-' }}</td>
         </tr>
     </table>
 
     <!-- SECCIÓN 5: (14) DATOS DE LA EMPRESA QUE RECIBE -->
     <table>
         <tr class="bg-header">
-            <td colspan="3">(14) DATOS DE LA EMPRESA QUE RECIBE ({{ $guia->empresaDestino->codigo_sica ?? '636729' }})</td>
+            <td colspan="3">(14) DATOS DE LA EMPRESA QUE RECIBE ({{ $guia->empresaDestino->codigo_sica ?? '-' }})</td>
         </tr>
         <tr class="bg-sub-header" style="font-size: 7.5px;">
             <td>(15) RAZON SOCIAL</td>
@@ -279,7 +279,7 @@
         <tr class="text-center">
             <td class="text-left">{{ $guia->empresaDestino->razon_social }}</td>
             <td class="text-left">{{ $guia->empresaDestino->rif }}</td>
-            <td class="text-left">{{ $guia->empresaDestino->persona_autorizada ?? 'JORGE CAMPOS' }}</td>
+            <td class="text-left">{{ $guia->empresaDestino->persona_autorizada ?? '-' }}</td>
         </tr>
     </table>
     <table class="border-0">
@@ -289,15 +289,15 @@
             <td>PARROQUIA</td>
         </tr>
         <tr class="text-center">
-            <td>{{ $guia->empresaDestino->estado ?? 'LARA' }}</td>
-            <td>{{ $guia->empresaDestino->ciudad ?? 'BARQUISIMETO' }}</td>
-            <td>{{ $guia->empresaDestino->parroquia ?? 'SANTA ROSA' }}</td>
+            <td>{{ $guia->empresaDestino->estado ?? '-' }}</td>
+            <td>{{ $guia->empresaDestino->ciudad ?? '-' }}</td>
+            <td>{{ $guia->empresaDestino->parroquia ?? '-' }}</td>
         </tr>
     </table>
     <table class="border-0">
         <tr>
             <td class="bg-sub-header" style="font-size: 7.5px; font-weight: bold; text-align: center; width: 20%;">TELÉFONOS</td>
-            <td colspan="2" class="text-left" style="font-size: 7.5px; width: 80%;">{{ $guia->empresaDestino->telefonos ?? '0414-5185687 0414-5185687' }}</td>
+            <td colspan="2" class="text-left" style="font-size: 7.5px; width: 80%;">{{ $guia->empresaDestino->telefonos ?? '-' }}</td>
         </tr>
         <tr>
             <td class="bg-sub-header" style="font-size: 7.5px; font-weight: bold; text-align: center; width: 20%;">(18) DIRECCIÓN</td>

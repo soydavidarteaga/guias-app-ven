@@ -23,8 +23,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/guias/exportar-todas-zip', [GuiaController::class, 'exportAllZip'])->name('guias.exportAllZip');
     Route::get('/guias/crear', [GuiaController::class, 'create'])->name('guias.create');
     Route::post('/guias', [GuiaController::class, 'store'])->name('guias.store');
-    Route::get('/guias/{guia}', [GuiaController::class, 'show'])->name('guias.show')->where('guia', '^[0-9]{1,6}$');
-    Route::get('/guias/{guia}/pdf', [GuiaController::class, 'descargarPdf'])->name('guias.pdf');
+    Route::get('/guias/{guia:nro_guia}', [GuiaController::class, 'show'])->name('guias.show')->where('guia', '^[0-9]+$');
+    Route::get('/guias/{guia:nro_guia}/pdf', [GuiaController::class, 'descargarPdf'])->name('guias.pdf');
 
     // Catálogos CRUD
     Route::resource('empresas', EmpresaController::class)->except(['create', 'edit', 'show']);

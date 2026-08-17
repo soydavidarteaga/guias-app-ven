@@ -81,7 +81,7 @@ class GuiaController extends Controller
             $validated['items']
         );
 
-        return redirect()->route('guias.show', $guia->id)
+        return redirect()->route('guias.show', $guia->nro_guia)
             ->with('success', 'Guía de Movilización emitida exitosamente.');
     }
 

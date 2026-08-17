@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $origen = Empresa::create([
             'razon_social' => 'Alimentos Polar C.A.',
             'rif' => 'J-00001111-2',
-            'codigo_sica' => '715118',
+            'codigo_sica' => '715119',
             'persona_autorizada' => 'Juan Perez',
             'telefonos' => '0414-1234567',
             'estado' => 'Carabobo',

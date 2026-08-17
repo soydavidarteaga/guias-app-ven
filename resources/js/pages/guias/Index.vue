@@ -201,12 +201,12 @@ const getBadgeVariant = (status: string) => {
                                 <td class="p-3 text-right">
                                     <div class="flex items-center justify-end gap-2">
                                         <Button as-child size="sm" variant="ghost" class="h-8 w-8 p-0">
-                                            <Link :href="`/guias/${guia.id}`">
+                                            <Link :href="`/guias/${guia.nro_guia}`">
                                                 <Eye class="h-4 w-4" />
                                             </Link>
                                         </Button>
                                         <Button as-child size="sm" variant="outline" class="h-8 p-2 text-xs gap-1">
-                                            <a :href="`/guias/${guia.id}/pdf`" target="_blank">
+                                            <a :href="`/guias/${guia.nro_guia}/pdf`" target="_blank">
                                                 <Download class="h-3.5 w-3.5" />
                                                 PDF
                                             </a>
