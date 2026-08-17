@@ -90,16 +90,14 @@
 
     $qrBase64 = '';
     try {
-        $arrContextOptions = [
-            "ssl" => [
-                "verify_peer" => false,
-                "verify_peer_name" => false,
-            ],
-        ];
-        $qrRawContent = @file_get_contents($qrApiUrl, false, stream_context_create($arrContextOptions));
-        if ($qrRawContent) {
-            $qrBase64 = 'data:image/png;base64,' . base64_encode($qrRawContent);
-        }
+        $qrOptions = new \chillerlan\QRCode\QROptions([
+            'version'      => \chillerlan\QRCode\Common\VersionInterface::AUTO,
+            'outputType'   => \chillerlan\QRCode\Output\QROutputInterface::GDIMAGE_PNG,
+            'eccLevel'     => \chillerlan\QRCode\Common\EccLevel::L,
+            'scale'        => 5,
+            'imageBase64'  => true,
+        ]);
+        $qrBase64 = (new \chillerlan\QRCode\QRCode($qrOptions))->render($targetPublicUrl);
     } catch (\Throwable $e) {
         $qrBase64 = '';
     }
